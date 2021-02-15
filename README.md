@@ -4,4 +4,4 @@ To get started you should have node installed.
 
 Use npm install to get your version up to date with mine.
 
-Use npm start to tart the application in order to view the application.
+Use npm start to start the application in order to view the application.
