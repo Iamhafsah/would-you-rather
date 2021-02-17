@@ -6,12 +6,12 @@ function Nav() {
         <nav>
             <ul className='nav-ul'>
                 <li>
-                    <NavLink to='/' >
+                    <NavLink to='/'>
                         Start
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to='/home' >
+                    <NavLink to='/home'>
                         Home
                     </NavLink>
                 </li>

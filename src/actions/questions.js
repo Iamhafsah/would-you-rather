@@ -18,7 +18,7 @@ export function addQuestion(question){
 export function handleAddQuestion (question){
     return (dispatch, getState) => {
         const {authedUser} = getState()
-        dispatch(showLoading())
+        // dispatch(showLoading())
         
 
     }
