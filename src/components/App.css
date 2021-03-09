@@ -15,8 +15,10 @@ nav{
   justify-content: left;
   align-items: center;
 }
-.nav-ul li{
+li{
   list-style-type: none;
+}
+.nav-ul li{
   margin-right: 2em;
 }
 .nav-ul li a {

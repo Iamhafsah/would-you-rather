@@ -1,6 +1,7 @@
-export const SET_AUTHED_USER = 'SET_AUTHED_USER'
+import {SET_AUTHED_USER} from './actionTypes'
 
 export function setAuthedUser (id){
+    localStorage.setItem("currentUser", id);
     return{
         type: SET_AUTHED_USER,
         id,

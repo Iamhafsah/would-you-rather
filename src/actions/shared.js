@@ -3,7 +3,11 @@ import {receiveUsers} from '../actions/users'
 import {receiveQuestions} from '../actions/questions'
 import {setAuthedUser} from '../actions/authedUser'
 
-const AUTHED_ID = "sarahedo"
+let AUTHED_ID = localStorage.getItem('currentUser');
+
+if (AUTHED_ID === "null"){
+    AUTHED_ID = null
+}
 
 export function handleInitialData(){
     return(dispatch)=>{
