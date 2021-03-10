@@ -3,12 +3,13 @@ body{
   text-align: center;
 }
 nav{
-  background-color: powderblue;
+  background-color: rgb(74, 44, 247);
   padding: 1em;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 1.2em;
+  color: white;
 }
 .nav-ul{
   display: flex;
@@ -22,11 +23,11 @@ li{
   margin-right: 2em;
 }
 .nav-ul li a {
-  color: black;
+  color: white;
   text-decoration: none;
   
 }
-.login-form{
+.login-form, .new-poll-container{
   border: 2px solid ;
   max-width: 50%;
   margin: auto;
@@ -35,3 +36,52 @@ li{
 select, .login-form button{
   margin-bottom: 1em;
 } 
+.new-poll-container{
+  margin-top: 5%;
+}
+
+.new-poll-container h2{
+  background-color: rgb(74, 44, 247);
+  color: white;
+  padding: .5em;
+  margin-top: -.01em;
+}
+.new-poll-container .poll-div{
+  padding: .5em;
+}
+
+.poll-div input{
+  margin-bottom: 1em;
+  width: 60%;
+  padding: .3em;
+}
+.poll-div button, .question-container button{
+  background-color: rgb(74, 44, 247);
+  border: 2px solid;
+  padding: .7em;
+  border-radius: .3em;
+  margin-top: .5em;
+  margin-bottom: .7em;
+  width: 25%;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+}
+.option-two{
+  margin-top: .5em;
+}
+.user-avatar{
+  width: 10vw;
+  border-radius: 50%;
+}
+.question-container{
+  background-color: rgb(74, 44, 247);
+  color: white;
+  max-width: 40%;
+  margin: 3em auto;
+  padding: 1em;
+}
+.question-container button{
+  background-color: white;
+  color: rgb(74, 44, 247);
+}

@@ -1,11 +1,12 @@
 import React, {Component} from 'react'
 import './App.css';
-import {BrowserRouter as Router, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom'
 import Login from './Login'
-import Nav from './Nav'
 import {connect} from 'react-redux'
 import {handleInitialData} from '../actions/shared'
-import Polls from './Polls'
+import Home from './Home'
+import New from './New'
+
 
 
 class App extends Component {
@@ -18,9 +19,13 @@ class App extends Component {
   return (
     <Router>
     <div className="App">
-      <Nav/>
-      <Login/>
-      {this.props.loading === true ? null : <Polls/>}
+      <Switch>
+        <Route exact path='/' component={Login}/>
+
+        <Route path='/home' component={this.props.loading === true ? null : Home} />
+
+        <Route path='/new' component={this.props.loading === true ? null : New}/>
+      </Switch>
     </div>
     </Router>
   );

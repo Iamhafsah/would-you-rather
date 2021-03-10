@@ -23,3 +23,12 @@ export function handleAddQuestion (question){
 
     }
 }
+
+export function saveAnswer (id, answer, authedUser){
+    return{
+        type: SAVE_ANSWER,
+        id,
+        answer,
+        authedUser
+    }
+}
