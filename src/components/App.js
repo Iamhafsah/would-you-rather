@@ -6,7 +6,9 @@ import {connect} from 'react-redux'
 import {handleInitialData} from '../actions/shared'
 import Home from './Home'
 import New from './New'
-
+import Question from './Question'
+import ErrorPage from './ErrorPage'
+import LeaderBoard from './LeaderBoard'
 
 
 class App extends Component {
@@ -22,9 +24,15 @@ class App extends Component {
       <Switch>
         <Route exact path='/' component={Login}/>
 
-        <Route path='/home' component={this.props.loading === true ? null : Home} />
+        <Route exact path='/home' component={this.props.loading === true ? null : Home} />
 
-        <Route path='/new' component={this.props.loading === true ? null : New}/>
+        <Route exact path='/question/:id' component={this.props.loading === true ? null : Question}/>
+
+        <Route exact path='/add' component={this.props.loading === true ? null : New}/>
+
+        <Route exact path='/leaderboard' component={this.props.loading === true ? null : LeaderBoard}/>
+
+        <Route component={ErrorPage}/>
       </Switch>
     </div>
     </Router>

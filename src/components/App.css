@@ -1,6 +1,7 @@
 
 body{
   text-align: center;
+  font-family: 'Nunito', sans-serif;
 }
 nav{
   background-color: rgb(74, 44, 247);
@@ -36,6 +37,33 @@ li{
 select, .login-form button{
   margin-bottom: 1em;
 } 
+.login-form{
+  background-color:rgb(74, 44, 247);
+  color: white;
+}
+.login-form-select{
+  height: 2.5em;
+  font-size: .9em;
+  border-radius: .2em;
+}
+.login-form button{
+  padding: .5em 1.6em;
+}
+.login-form button a{
+  color: rgb(74, 44, 247);
+  text-decoration: none;
+  font-size: 1.2em;
+}
+.login-form button a:hover{
+  color: white;
+  
+}
+.login-form button:hover{
+  color: white;
+  background-color: rgb(74, 44, 247);
+  border: 2px solid white;
+  border-radius: .2em;
+}
 .new-poll-container{
   margin-top: 5%;
 }
@@ -81,7 +109,96 @@ select, .login-form button{
   margin: 3em auto;
   padding: 1em;
 }
+
 .question-container button{
   background-color: white;
   color: rgb(74, 44, 247);
+  margin-top: 1em;
+}
+.answered-question{
+  text-transform: uppercase;
+  font-weight: 700;
+  padding-top: 1em;
+  color: rgb(74, 44, 247);
+}
+.chosenAnswer{
+  color: red !important;
+}
+.option{
+  background-color: white;
+  color: black;
+}
+.button-container{
+  max-width: 40%;
+  display: flex;
+  justify-content: space-evenly;
+  margin: 2em auto;
+}
+.top-button{
+  background-color: white;
+  color: black;
+  padding: 1em;
+  border: 2px solid black;
+  border-radius: .2em;
+  width: fit-content;
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: all 250ms ease;
+}
+.top-button:hover{
+  background-color: rgb(74, 44, 247);
+  color: white;
+  cursor: pointer;
+}
+.top-button:active{
+  animation: shrink 250ms ease;
+}
+table{
+  max-width: 80%;
+  margin: auto;
+  margin-top: 2em;
+}
+table, th, td{
+  border: 2px solid rgb(122, 120, 120);
+  border-collapse: collapse;
+}
+.leaderboard-headings{
+  background-color: rgb(74, 44, 247);
+}
+.leaderboard-headings th{
+  padding: 1em;
+  color: white;
+  font-size: 1.2rem;
+}
+.leaderboard-avatar{
+  width: 7vw;
+  border-radius: 50%;
+  padding: .2em 2em;
+}
+.user-name{
+  padding: .2em 2em;
+}
+.leaderboard-table td{
+  font-weight: bold;
+  font-size: 1.1em;
+}
+a{
+  text-decoration: none;
+  color: rgb(74, 44, 247);
+}
+
+@keyframes shrink{
+  from{
+    width: 14vw;
+    padding: .6em;
+  }to{
+    width: 15vw;
+    padding: 1em;
+  }
+}
+
+@media only screen and (min-width:700px){
+  .top-button{
+    width: 15vw;
+  }
 }

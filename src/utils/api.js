@@ -15,10 +15,10 @@ export function getInitialData (){
     }))
 }
 
-export function saveQuestion(question){
-    return _saveQuestion
-}
+// export function saveQuestion(question){
+//     return _saveQuestion
+// }
 
-export function saveQuestionAnswer(answer){
-    return _saveQuestionAnswer
-}
+// export function saveQuestionAnswer(answer){
+//     return _saveQuestionAnswer
+// }

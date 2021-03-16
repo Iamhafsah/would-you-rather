@@ -20,26 +20,34 @@ class Nav extends Component {
                     </NavLink>
                 </li>
                 <li>
+                    <NavLink to='/home'>
+                        Home
+                    </NavLink>
+                </li>
+                <li>
                     <NavLink to='/leaderboard'>
                         Leaderboard
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to='/new'>
+                    <NavLink to='/add'>
                         New Question
                     </NavLink>
                 </li>
             </ul>
 
-            <span>Hello {this.props.authedUser}</span>
+            <span>Hello {this.props.userName}</span>
         </nav>
     )
 }
 }
 
-function mapStateToProps({authedUser}){
+function mapStateToProps({authedUser, users}){
+    let userName = users[authedUser].name
+
     return{
-        authedUser:authedUser
+        authedUser,
+        userName
     }
 }
 export default connect (mapStateToProps)(Nav)

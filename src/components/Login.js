@@ -8,7 +8,7 @@ import { setAuthedUser } from "../actions/authedUser";
 
 class Login extends Component {
     state={
-        authedUser: ''
+        authedUser: ""
     }
 
 
@@ -32,18 +32,20 @@ class Login extends Component {
                 <select
                 value={this.state.authedUser}
                 onChange={this.handleChange}
+                className="login-form-select"
                 >
                    
                     <option default value='' disabled>Choose a player</option>
 
                    {this.props.users.map((user, index)=>(
-                       <option key={index} value={user.name}>{user.name}</option>
+                       <option key={index} value={user.id}>{user.name}</option>
                    ))}
                 </select>
                 <br/>
                
                 <button
                 onClick={this.setUser}
+                disabled={this.authedUser === ""}
                 >
                 <Link to='/home'>
                 Start
