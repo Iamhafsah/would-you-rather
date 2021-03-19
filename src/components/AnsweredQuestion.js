@@ -32,16 +32,14 @@ class AnsweredQuestion extends Component {
                 <p className="answered-question">
                     1. {optionOneText}</p>
                 <p>has</p>
-                <p>{optionOneLength} of {total} votes which is {(optionOneLength / total) * 100}% of all votes</p><br/> 
-
-                
+                <p>{optionOneLength} of {total} votes which is {Math.round((optionOneLength/total) * 100)}% of all votes</p><br/>
             </div>
 
             <div className="option">
                 <p className="answered-question">
                     2. {optionTwoText}</p>
                 <p>has</p>
-                <p>{optionTwoLength} of {total} votes which is {(optionTwoLength / total) * 100}% of all votes</p><br/> 
+                <p>{optionTwoLength} of {total} votes which is {Math.round((optionTwoLength/total) * 100)} % of all votes</p><br/> 
             </div>
                 
                 <br/>
