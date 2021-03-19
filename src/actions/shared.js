@@ -9,7 +9,7 @@ import {setAuthedUser} from './authedUser'
 let AUTHED_ID = localStorage.getItem('currentUser');
 
 if (AUTHED_ID === "null"){
-    AUTHED_ID = null
+    AUTHED_ID = ""
 }
 
 export function handleInitialData(){

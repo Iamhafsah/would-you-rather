@@ -133,6 +133,12 @@ select, .login-form button{
   background-color: white;
   color: black;
 }
+.option-two{
+  margin-top: 1em;
+}
+.voted{
+  color: rgb(245, 66, 95);
+}
 .button-container{
   max-width: 40%;
   display: flex;

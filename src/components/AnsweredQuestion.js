@@ -14,8 +14,8 @@ class AnsweredQuestion extends Component {
     }
     
     render() {
-        const { userAvatar, userName, optionOneText, optionTwoText, optionOneLength, optionTwoLength, total} = this.props;
-
+        const { userAvatar, userName, optionOneText, optionTwoText, optionOneLength, optionTwoLength, total, authedUser} = this.props;
+        const { optionOne, optionTwo } = this.props.question;
             
         if (this.state.homePage === true){
             return <Redirect to="/home" />
@@ -28,18 +28,33 @@ class AnsweredQuestion extends Component {
             <h2>{userName} asked</h2>
             <h3>Would you rather?</h3>
 
-            <div className="option">
-                <p className="answered-question">
-                    1. {optionOneText}</p>
-                <p>has</p>
-                <p>{optionOneLength} of {total} votes which is {Math.round((optionOneLength/total) * 100)}% of all votes</p><br/>
+            <div className="option" style={
+                optionOne.votes.includes(authedUser)
+                    ? { border: '2px solid rgb(245, 66, 95)' }
+                    : {  border: '2px solid black' }
+            }>
+                    {optionOne.votes.includes(authedUser) && (
+                    <div className='voted '>You voted this option 🌟</div>
+                    )}
+
+                    <p>1️⃣ {optionOneText}</p>
+                    <p>has</p>
+                    <p>{optionOneLength} of {total} votes which is {Math.round((optionOneLength/total) * 100)}% of all votes</p><br/>
             </div>
 
-            <div className="option">
-                <p className="answered-question">
-                    2. {optionTwoText}</p>
-                <p>has</p>
-                <p>{optionTwoLength} of {total} votes which is {Math.round((optionTwoLength/total) * 100)} % of all votes</p><br/> 
+
+            <div className="option option-two" style={
+                optionTwo.votes.includes(authedUser)
+                    ? {  border: '2px solid rgb(245, 66, 95)' }
+                    : {  border: '2px solid black'}
+            }>
+                    {optionTwo.votes.includes(authedUser) && (
+                     <div className='voted '>You voted this option 🌟</div>
+                    )}
+
+                    <p>2️⃣ {optionTwoText}</p>
+                    <p>has</p>
+                    <p>{optionTwoLength} of {total} votes which is {Math.round((optionTwoLength/total) * 100)} % of all votes</p><br/> 
             </div>
                 
                 <br/>

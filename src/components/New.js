@@ -33,11 +33,15 @@ export class New extends Component {
     }
 
     render() {
-        const { avatarURL, authedUserName } = this.props;
+        const { avatarURL, authedUser} = this.props;
 
         if (this.state.submitted === true){
             return <Redirect to="/home" />
         }
+        if (authedUser === ""){
+            return <Redirect to = "/" />
+        }
+
         return (
             <>
             <Nav/>
@@ -47,7 +51,7 @@ export class New extends Component {
                 <h2>Create New Question</h2>
                 
                 <div className='poll-div'>
-                <p>{authedUserName}</p>
+              
                 <img alt="user avatar" src={avatarURL} className='user-avatar' />
                 <h3>Would you 
                 rather...</h3>
@@ -58,9 +62,10 @@ export class New extends Component {
                 one'
                 className='option-one'
                 onChange={this.handleOptionOneChange}
-                // value= 'value'
                 /> <br/>
+
                    <strong> OR </strong> 
+
                     <br/>
                 <input
                 type='text'
@@ -81,17 +86,17 @@ export class New extends Component {
     }
 }
 
-const mapStateToProps = ({authedUser, users}) =>{
-    let userName = users[authedUser].name
-    let avatarURL = users[authedUser].avatarURL
+const mapStateToProps = ({authedUser, users}) =>{    
+        let avatarURL = authedUser ?  users[authedUser].avatarURL : null;
 
     return{
-        userName,
-        avatarURL
+        avatarURL,
+        authedUser,
+        users
     }
 }
 const mapDispatchToProps = dispatch => ({
   addQuestion: (q1, q2) => dispatch(handleAddQuestion(q1, q2))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps) (New)
+export default connect(mapStateToProps, mapDispatchToProps)(New)

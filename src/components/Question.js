@@ -53,6 +53,8 @@ export class Question extends Component {
                             optionOneLength={optionOneLength}
                             optionTwoLength={optionTwoLength}
                             total={totalVoteCount}
+                            question={question}
+                            authedUser={authedUser}
                             />
                         )
                         : 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import {Link } from "react-router-dom";
+import {Redirect } from "react-router-dom";
 import Nav from './Nav';
 
 export class LeaderBoard extends Component {
@@ -8,10 +8,12 @@ export class LeaderBoard extends Component {
     render() {
         let {users, authedUser} = this.props;
 
+        
+    if(authedUser === ""){
+        return <Redirect to ="/" />
+    }
         return (
             <>
-            {authedUser ? (
-                <>
                 <Nav/>
                 <table className="leaderboard-container">
                     <tbody>
@@ -34,11 +36,6 @@ export class LeaderBoard extends Component {
                     </>
                     </tbody>
                 </table>
-                </>
-            ): (
-                <div>You cannot access this page unless you <Link to="/">Choose a player</Link></div>
-            )
-             }
             </>
         )
     }
