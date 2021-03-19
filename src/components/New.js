@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
-import { Redirect, Link } from "react-router-dom";
+import { Redirect} from "react-router-dom";
 import Nav from './Nav'
 import { handleAddQuestion } from "../actions/questions";
-
-
 
 
 export class New extends Component {

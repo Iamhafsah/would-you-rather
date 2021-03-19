@@ -25,7 +25,7 @@ export default function user (state={}, action){
                 ...state[action.authedUser],
                 answers: {
                 ...state[action.authedUser].answers,
-                [action.id]: answer
+                [action.qid]: answer
                 }
             }
             };

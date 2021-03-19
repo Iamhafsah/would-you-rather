@@ -1,11 +1,7 @@
-import {_saveQuestion, _saveQuestionAnswer} from '../utils/_DATA'
-// import {showLoading, hideLoading} from 'react-redux-loading'
 import {RECEIVE_QUESTION, ADD_QUESTION, SAVE_ANSWER} from './actionTypes'
+import {_saveQuestion, _saveQuestionAnswer} from '../utils/_DATA'
+import {addQuestionToUser, addAnswerToUser } from "./users";
 
-import {
-    addQuestionToUser,
-    addAnswerToUser
-  } from "./users";
 
 export function receiveQuestions(questions){
     return{
@@ -20,40 +16,58 @@ export function addQuestion(question){
     }
 }
 
-export function handleAddQuestion (optionOneText,optionTwoText){
-    return (dispatch, getState) => {
-        const {authedUser} = getState();
-        
-        return _saveQuestion({
-            author: authedUser,
-            optionOneText,
-            optionTwoText
-          }).then(question => {
-            dispatch(addQuestion(question));
-            dispatch(addQuestionToUser(authedUser, question.id));
-          });
-        };
-      }
-
-export function saveAnswer (id, answer, authedUser){
+export function saveAnswer (qid, answer, authedUser){
     return{
         type: SAVE_ANSWER,
-        id,
+        qid,
         answer,
-        authedUser
+        authedUser,
     }
 }
 
-export function handleSaveAnswer (id, answer){
-    return (dispatch, getState)=> {
-        const {authedUser} = getState();
+export function handleAddQuestion (optionOneText,
+    optionTwoText){
+        return (dispatch, getState) => {
+            const {authedUser} = getState();
+            
+            return _saveQuestion({
+                author: authedUser,
+                optionOneText,
+                optionTwoText
+              }).then(question => {
+                dispatch(addQuestion(question));
+                dispatch(addQuestionToUser(authedUser, 
+    question.id));
+              });
+            };
+          }
+    
+          export function handleSaveAnswer (qid, answer){
+            return (dispatch, getState)=> {
+                const {authedUser} = getState();
+        
+                return _saveQuestionAnswer({
+                    authedUser,
+                    qid,
+                    answer
+                }).then(dispatch(saveAnswer(qid, answer, 
+    authedUser)))
+                .then(dispatch(addAnswerToUser(authedUser,qid, 
+    answer, )))
+            }
+        }
 
-        return _saveQuestionAnswer({
-            authedUser,
-            qid: id,
-            answer
+// export function handleSaveAnswer(qid, answer) {
+//     return (dispatch, getState) => {
+//         const { authedUser } = getState()
 
-        }).then(dispatch(saveAnswer(id, answer, authedUser)))
-        .then(dispatch(addAnswerToUser(authedUser, id, answer)))
-    }
-}
+
+//         return _saveQuestionAnswer({
+//             authedUser,
+//             qid,
+//             answer
+//         })
+//             .then(() => dispatch(saveAnswer(authedUser, qid, answer)))
+//             .then(() => dispatch(addAnswerToUser(authedUser, qid, answer)))
+//     }
+// }

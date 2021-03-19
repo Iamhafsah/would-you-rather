@@ -49,14 +49,14 @@ function mapStateToProps({users, authedUser}){
     let newUserObject = Object.assign({}, users);
 
     Object.values(users).map((item) =>(
-        newUserObject[item.id]["score"] = Object.keys(item.answers).length + item.questions.length
+        newUserObject[item.id]["grade"] = Object.keys(item.answers).length + item.questions.length
     ))
 
     return{
         users: Object.values(newUserObject).sort((user1, user2) => {
-            if (user1.score < user2.score) {
+            if (user1.grade < user2.grade) {
               return 1;
-            } else if (user1.score > user2.score) {
+            } else if (user1.grade > user2.grade) {
               return -1;
             } else {
               return 0;

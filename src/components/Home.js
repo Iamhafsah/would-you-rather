@@ -1,32 +1,26 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import { Redirect, withRouter, Link } from "react-router-dom";
+import {withRouter, Link } from "react-router-dom";
 import Nav from './Nav'
-
-const unansweredQuestions = "unanswered"
-const answeredQuestions = "answered"
-
-const RESULTS = "results";
-const POLL = "poll";
-
 
 class Home extends Component{
 
     state={
-        pollList : unansweredQuestions
+       isAnswered : "No"
     }
 
+
     questionButtonClick = (e) => {
-        if (!e.target.innerHTML.toLowerCase().includes(unansweredQuestions)){
-            this.setState({pollList: answeredQuestions})
+        if (!e.target.innerHTML.toLowerCase().includes("unanswered")){
+            this.setState({isAnswered: "Yes"})
         }else{
-            this.setState({pollList: unansweredQuestions})
+            this.setState({isAnswered: "No"})
         }
     }
 
     render(){
 
-        const { questions, users, authedUser, answered, unanswered } = this.props;
+        const { questions, users, authedUser, answeredQuestion, unansweredQuestion } = this.props;
 
         return(
             <>
@@ -38,24 +32,22 @@ class Home extends Component{
                     <button 
                         onClick={this.questionButtonClick}
                         className="top-button"
-                        selected={this.state.pollList === 
-                        unansweredQuestions? true : false}
+                        selected={this.state.isAnswered === "No" ? true : false}
                     >   Unanswered
                     </button>
 
                     <button 
                         onClick={this.questionButtonClick}
                         className="top-button"
-                        selected={this.state.pollList === 
-                        answeredQuestions? true : false}
+                        selected={this.state.isAnswered ===  "Yes" ? true : false}
                     >   Answered
                     </button>
                     </div>
 
                     <ul>
-                        {(this.state.pollList === 
-                            unansweredQuestions ? unanswered: 
-                            answered).map((item, i) => (
+                        {(this.state.isAnswered === 
+                            "No" ? unansweredQuestion: 
+                            answeredQuestion).map((item, i) => (
 
                             <li 
                             key={i}
@@ -69,13 +61,7 @@ class Home extends Component{
                                 <br/>
 
                                 <Link to={{
-                                    pathname: `/question/${questions[item].id}`,
-                                    state: {
-                                      type:
-                                        this.state.questionList === unansweredQuestions
-                                          ? POLL
-                                          : RESULTS
-                                    }
+                                    pathname: `/question/${questions[item].id}`
                                 }}>
                                     <button>Go to poll</button>
                                 </Link>
@@ -108,28 +94,24 @@ function mapStateToProps({questions, users, authedUser}){
     }
 
    
-    let answered
-    let unanswered
+    let answeredQuestion
+    let unansweredQuestion
 
     if(authedUser){
 
-        answered = Object.keys(users[authedUser].answers).sort(sortByTime)
-        unanswered = Object.keys(Object.assign({}, questions)).sort(sortByTime)
+        answeredQuestion = Object.keys(users[authedUser].answers).sort(sortByTime)
+        unansweredQuestion = Object.keys(Object.assign({}, questions)).sort(sortByTime)
 
-        answered.map(item => (
-            unanswered = unanswered.filter(unanswered => item !== unanswered)
+        answeredQuestion.map(item => (
+            unansweredQuestion = unansweredQuestion.filter(unanswered => item !== unanswered)
         ))
     }
     return{
         authedUser,
         users,
         questions,
-        answered,
-        unanswered
-        // questionId: Object.keys(questions)
-        // .sort((a,b) => questions[b].timestamp - questions[a].timestamp),
-        // questions: Object.values(questions),
-        // users: Object.values(users)
+        answeredQuestion,
+        unansweredQuestion
     }
 }
 export default withRouter(connect(mapStateToProps)(Home))

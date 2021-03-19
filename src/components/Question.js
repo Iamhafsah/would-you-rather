@@ -23,18 +23,19 @@ export class Question extends Component {
         e.preventDefault()
         const {chosenAnswer} = this.state;
 
-        chosenAnswer !== "null" ? this.props.dispatch(handleSaveAnswer(this.props.questions.id, chosenAnswer)) : alert("You have not selected an answer")
+        chosenAnswer !== "null" ? this.props.dispatch(handleSaveAnswer(this.props.question.id, chosenAnswer, this.props.authedUser)) : alert("You have not selected an answer")
+        
     }
     render() {
-        const {authedUser, questions, users} = this.props;
-        let optionOneLength  = questions.optionOne.votes.length;
-        let optionTwoLength = questions.optionTwo.votes.length;
+        const {authedUser, question, users} = this.props;
+        let optionOneLength  = question? question.optionOne.votes.length : null;
+        let optionTwoLength = question ? question.optionTwo.votes.length : null;
         let totalVoteCount = optionOneLength + optionTwoLength;
         
-        const questionHasBeenAnswered = Object.keys(users[authedUser].answers).includes(
-        questions.id);
+        const questionHasBeenAnswered = question?  Object.keys(users[authedUser].answers).includes(
+        question.id) : null;
      
-        if(questions === undefined){
+        if(question === undefined){
             return <ErrorPage/>
         }
 
@@ -45,10 +46,10 @@ export class Question extends Component {
                         <Nav/>
                         {questionHasBeenAnswered? (
                             <AnsweredQuestion
-                            userAvatar={users[questions.author].avatarURL}
-                            userName={users[questions.author].name}
-                            optionOneText={questions.optionOne.text}
-                            optionTwoText={questions.optionTwo.text}
+                            userAvatar={users[question.author].avatarURL}
+                            userName={users[question.author].name}
+                            optionOneText={question.optionOne.text}
+                            optionTwoText={question.optionTwo.text}
                             optionOneLength={optionOneLength}
                             optionTwoLength={optionTwoLength}
                             total={totalVoteCount}
@@ -57,10 +58,10 @@ export class Question extends Component {
                         : 
                         (
                             <UnansweredQuestion
-                            userAvatar={users[questions.author].avatarURL}
-                            userName={users[questions.author].name}
-                            optionOneText={questions.optionOne.text}
-                            optionTwoText={questions.optionTwo.text}
+                            userAvatar={users[question.author].avatarURL}
+                            userName={users[question.author].name}
+                            optionOneText={question.optionOne.text}
+                            optionTwoText={question.optionTwo.text}
                             handleSubmit={this.handleSubmit}
                             value={this.state.chosenAnswer}
                             handleInputChange={this.handleInputChange}
@@ -76,13 +77,15 @@ export class Question extends Component {
 }
 
 function mapStateToProps({authedUser, users, questions}, props){
-    const question = questions[props.match.params.id];
+    const questionId = questions[props.match.params.id];
 
     return{
         authedUser,
-        // question: question,
-        questions: question,
+        question: questionId,
         users
     }
 }
-export default connect(mapStateToProps) (Question)
+// const mapDispatchToProps = dispatch => ({
+//     saveAnswer: (q1, q2) => dispatch(handleSaveAnswer(q1, q2))
+//   });
+export default connect(mapStateToProps)(Question)

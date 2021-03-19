@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from "react-router-dom";
 
 
 
@@ -19,7 +18,7 @@ class UnansweredQuestion extends Component {
                 <input
                 type='radio'
                 name='option-one'
-                value={optionOneText}
+                value= 'optionOne'
                 onChange={this.props.handleInputChange}
                 /> 
                 {optionOneText}...
@@ -27,8 +26,8 @@ class UnansweredQuestion extends Component {
          
                 <input
                 type='radio'
-                name='option-one'
-                value={optionTwoText}
+                name='option-two'
+                value='optionTwo'
                 onChange={this.props.handleInputChange}
                 /> 
                 {optionTwoText}

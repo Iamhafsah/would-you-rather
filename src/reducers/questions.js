@@ -1,7 +1,7 @@
 import  {RECEIVE_QUESTION,ADD_QUESTION, SAVE_ANSWER} from '../actions/actionTypes'
 
 export default function questions (state={}, action){
-    const {question, id, answer, authedUser } = action;
+    const {question, qid, answer, authedUser} = action;
 
     switch(action.type){
         case RECEIVE_QUESTION:
@@ -15,15 +15,16 @@ export default function questions (state={}, action){
                 [question.id]: question
             }
         case SAVE_ANSWER:
+            const { authedUser, qid, answer } = action;
             return {
-            ...state,
-            [id]: {
-            ...state[id],
-            [answer]: {
-            ...state[id][answer],
-            votes: state[id][answer].votes.concat(authedUser)
-            }
-            }
+                ...state,
+                [qid]: {
+                    ...state[qid],
+                    [answer]: {
+                        ...state[qid][answer],
+                        votes: state[qid][answer]? state[qid][answer].votes.concat(authedUser) : state[qid]
+                    }
+                },
             }
             default: 
             return state

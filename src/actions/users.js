@@ -1,5 +1,4 @@
 import {RECEIVE_USERS, ADD_QUESTION_TO_USER, ADD_ANSWER_TO_USER} from './actionTypes'
-
 export function receiveUsers(users){
     return {
         type: RECEIVE_USERS,
@@ -15,11 +14,11 @@ export function addQuestionToUser(authedUser,id){
     }
 }
 
-export function addAnswerToUser(authedUser,id, answer){
+export function addAnswerToUser(authedUser,qid, answer){
     return {         
         type: ADD_ANSWER_TO_USER,
         authedUser,
-        id,
+        qid,
         answer
     }
 }
