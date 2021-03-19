@@ -69,15 +69,11 @@ export class New extends Component {
                 two'
                 className='option-two'
                 onChange={this.handleOptionTwoChange}
-                // value= 'value'
                 /> <br/> 
 
-                {/* <Link to="/home"> */}
                     <button onClick={this.handleSubmit} disabled={this.state.optionOne === "" || this.state.optionTwo === ""}> 
-                        Submit
+                        Add Poll
                     </button> 
-                {/* </Link>  */}
-                
                 </div>
             </form>
             </>
