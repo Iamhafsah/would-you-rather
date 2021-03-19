@@ -28,8 +28,7 @@ export class LeaderBoard extends Component {
                                 <td className="user-name">{user.name}</td>
                                 <td><img src={user.avatarURL} alt="user avatar" className="leaderboard-avatar"/></td>
                                 <td>{user.questions.length}</td>
-                                <td>{Object.keys(user.answers).length}</td>
-                                
+                                <td>{Object.keys(user.answers).length}</td>  
                             </tr>
                         ))}
                     </>

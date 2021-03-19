@@ -47,9 +47,7 @@ class Login extends Component {
                 onClick={this.setUser}
                 disabled={this.authedUser === ""}
                 >
-                <Link to='/home'>
-                Start
-                </Link> 
+                <Link to='/home'> Start </Link> 
                 </button>
             </form>
         )
