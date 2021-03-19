@@ -1,4 +1,4 @@
-This is a would you rather ? game implementation with React and Redux.
+This is a "Would you rather?" game implementation with React and Redux.
 
 To get started you should have node installed.
 
